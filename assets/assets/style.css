@@ -1,0 +1,13 @@
+body { font-family: Arial, sans-serif; margin: 0; background: #f6f6f6; }
+header { background: #222; color: #fff; padding: 10px; }
+h1 { display: inline-block; margin-right: 20px; font-size: 18px; }
+.top-controls button, .top-controls select, .top-controls input { margin-right: 5px; padding: 6px; }
+main { display: flex; padding: 12px; }
+#properties { width: 250px; background: #fff; padding: 10px; border: 1px solid #ddd; margin-right: 10px; }
+#designer { flex: 1; background: #fff; border: 1px solid #ddd; padding: 10px; position:relative; }
+#labelContainer { position: relative; border: 1px dashed #aaa; margin: 0 auto; background: #fff; }
+.element { position: absolute; border: 1px dashed transparent; cursor: move; box-sizing: border-box; }
+.element.selected { border-color: #007bff; }
+button { cursor: pointer; }
+#cursorHint { position:absolute; right:6px; bottom:6px; font-size:11px; color:#666; }
+#syncStatus { position:absolute; left:10px; bottom:10px; font-size:11px; color:green; }
