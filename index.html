@@ -1,62 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>TSC Label Designer</title>
-    <link rel="stylesheet" href="assets/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
-  </head>
-  <body>
-    <div id="app">
-      <header>
-        <h1>TSC Label Designer</h1>
-        <div class="top-controls">
-          <input id="codeInput" placeholder="Enter Code and press Fetch" />
-          <button id="fetchBtn">Fetch</button>
-          <select id="labelSize">
-            <option value="50x38" selected>50×38 mm</option>
-            <option value="60x40">60×40 mm</option>
-            <option value="100x50">100×50 mm</option>
-          </select>
-          <button id="addText">Add Text</button>
-          <button id="addBarcode">Add Barcode</button>
-          <button id="addRect">Add Box</button>
-          <button id="saveTemplate">Save Template</button>
-          <select id="templatesList"><option value="">-- Load Template --</option></select>
-          <button id="printBtn">Print</button>
-        </div>
-      </header>
-
-      <main>
-        <aside id="properties">
-          <h3>Element Properties</h3>
-          <div id="noSelection">Select an element to edit its properties</div>
-          <div id="propsPanel" style="display:none">
-            <label>Type: <span id="propType"></span></label>
-            <label>Text: <input id="propText" /></label>
-            <label>Font size: <input id="propFontSize" type="number" /></label>
-            <label>X (mm): <input id="propX" type="number" /></label>
-            <label>Y (mm): <input id="propY" type="number" /></label>
-            <label>Width (mm): <input id="propW" type="number" /></label>
-            <label>Height (mm): <input id="propH" type="number" /></label>
-            <button id="deleteElement">Delete</button>
-            <button id="copyElement">Copy</button>
-            <button id="applyProps">Apply</button>
-          </div>
-        </aside>
-
-        <section id="designer">
-          <div id="labelContainer">
-            <div id="cursorHint">Drag to move. Resize from corners.</div>
-          </div>
-          <div id="syncStatus">Synced ✓</div>
-        </section>
-      </main>
-
-      <footer>
-        <small>Sheet ID: <span id="sheetId"></span></small>
-      </footer>
+<head>
+  <meta charset="utf-8">
+  <title>TSC Label Designer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="assets/style.css">
+  <!-- libs -->
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+</head>
+<body>
+  <header id="toolbar">
+    <div class="left">
+      <button id="newBtn">New</button>
+      <button id="openBtn">Open</button>
+      <button id="saveBtn">Save</button>
+      <button id="tplDelete">Delete</button>
+      <button id="printBtn">Print</button>
+      <button id="undoBtn">Undo</button>
+      <button id="redoBtn">Redo</button>
+      <button id="gridBtn">Grid</button>
+      <button id="snapBtn">Snap</button>
+      <span class="sep"></span>
+      <label>Zoom</label>
+      <button id="zoomOut">-</button>
+      <span id="zoomText">100%</span>
+      <button id="zoomIn">+</button>
     </div>
-    <script src="assets/app.js"></script>
-  </body>
+    <div class="right">
+      <input id="codeInput" placeholder="Enter Code">
+      <button id="fetchBtn">Fetch</button>
+    </div>
+  </header>
+
+  <main>
+    <aside id="leftPanel">
+      <h3>Page Setup</h3>
+      <label>Width (mm): <input id="pageW" type="number" value="50"></label>
+      <label>Height (mm): <input id="pageH" type="number" value="38"></label>
+      <label>Margin (mm): <input id="pageMargin" type="number" value="2"></label>
+      <button id="applyPage">Apply</button>
+
+      <h3>Elements</h3>
+      <button id="addText">Add Text</button>
+      <button id="addBarcode">Add Barcode</button>
+      <button id="addImage">Add Image</button>
+      <button id="addBox">Add Box</button>
+
+      <h3>Templates</h3>
+      <select id="templateSelect"><option value="">--Select--</option></select>
+      <div id="templateList"></div>
+    </aside>
+
+    <section id="canvasSection">
+      <div id="labelWrapper" class="labelWrapper"></div>
+      <div id="propertyPanel">
+        <h4>Properties</h4>
+        <div id="propType">No selection</div>
+        <label>Text: <input id="propText"></label>
+        <label>Font (px): <input type="number" id="propFont" value="12"></label>
+        <label>X (mm): <input id="propX" type="number" step="0.1"></label>
+        <label>Y (mm): <input id="propY" type="number" step="0.1"></label>
+        <label>W (mm): <input id="propW" type="number" step="0.1"></label>
+        <label>H (mm): <input id="propH" type="number" step="0.1"></label>
+        <label>Rotate: <input id="propRotate" type="number" step="1"></label>
+        <button id="applyProps">Apply</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Frontend calls backend API (Apps Script) — configure APPS_SCRIPT_URL in app.js</small>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
 </html>
