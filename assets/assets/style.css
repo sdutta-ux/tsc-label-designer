@@ -1,13 +1,16 @@
-body { font-family: Arial, sans-serif; margin: 0; background: #f6f6f6; }
-header { background: #222; color: #fff; padding: 10px; }
-h1 { display: inline-block; margin-right: 20px; font-size: 18px; }
-.top-controls button, .top-controls select, .top-controls input { margin-right: 5px; padding: 6px; }
-main { display: flex; padding: 12px; }
-#properties { width: 250px; background: #fff; padding: 10px; border: 1px solid #ddd; margin-right: 10px; }
-#designer { flex: 1; background: #fff; border: 1px solid #ddd; padding: 10px; position:relative; }
-#labelContainer { position: relative; border: 1px dashed #aaa; margin: 0 auto; background: #fff; }
-.element { position: absolute; border: 1px dashed transparent; cursor: move; box-sizing: border-box; }
-.element.selected { border-color: #007bff; }
-button { cursor: pointer; }
-#cursorHint { position:absolute; right:6px; bottom:6px; font-size:11px; color:#666; }
-#syncStatus { position:absolute; left:10px; bottom:10px; font-size:11px; color:green; }
+/* assets/style.css */
+:root{--panel:260px;--accent:#0b84ff}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f3f6f9;height:100vh;display:flex;flex-direction:column}
+#toolbar{display:flex;justify-content:space-between;padding:8px;background:#222;color:#fff;align-items:center}
+#toolbar button{margin-right:6px;padding:6px 8px;border-radius:4px;border:none;background:#444;color:#fff;cursor:pointer}
+#toolbar input{padding:6px;border-radius:4px}
+main{display:flex;flex:1;overflow:hidden}
+#leftPanel{width:var(--panel);background:#fff;border-right:1px solid #e6e6e6;padding:10px;overflow:auto}
+#canvasSection{flex:1;display:flex;padding:12px;gap:12px;align-items:flex-start}
+.labelWrapper{background:#fff;border:1px dashed #bbb;width:50mm;height:38mm;position:relative;display:block;margin:auto}
+.element{position:absolute;border:1px dashed transparent;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none}
+.element.selected{outline:2px solid var(--accent)}
+#propertyPanel{width:260px;background:#fff;border-left:1px solid #e6e6e6;padding:10px}
+label{display:block;margin:8px 0;font-size:13px}
+footer{padding:6px;background:#fff;border-top:1px solid #eee}
