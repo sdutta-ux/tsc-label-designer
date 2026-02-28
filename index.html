@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>TSC Label Designer</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>TSC Label Designer</h1>
+        <div class="top-controls">
+          <input id="codeInput" placeholder="Enter Code and press Fetch" />
+          <button id="fetchBtn">Fetch</button>
+          <select id="labelSize">
+            <option value="50x38" selected>50×38 mm</option>
+            <option value="60x40">60×40 mm</option>
+            <option value="100x50">100×50 mm</option>
+          </select>
+          <button id="addText">Add Text</button>
+          <button id="addBarcode">Add Barcode</button>
+          <button id="addRect">Add Box</button>
+          <button id="saveTemplate">Save Template</button>
+          <select id="templatesList"><option value="">-- Load Template --</option></select>
+          <button id="printBtn">Print</button>
+        </div>
+      </header>
+
+      <main>
+        <aside id="properties">
+          <h3>Element Properties</h3>
+          <div id="noSelection">Select an element to edit its properties</div>
+          <div id="propsPanel" style="display:none">
+            <label>Type: <span id="propType"></span></label>
+            <label>Text: <input id="propText" /></label>
+            <label>Font size: <input id="propFontSize" type="number" /></label>
+            <label>X (mm): <input id="propX" type="number" /></label>
+            <label>Y (mm): <input id="propY" type="number" /></label>
+            <label>Width (mm): <input id="propW" type="number" /></label>
+            <label>Height (mm): <input id="propH" type="number" /></label>
+            <button id="deleteElement">Delete</button>
+            <button id="copyElement">Copy</button>
+            <button id="applyProps">Apply</button>
+          </div>
+        </aside>
+
+        <section id="designer">
+          <div id="labelContainer">
+            <div id="cursorHint">Drag to move. Resize from corners.</div>
+          </div>
+          <div id="syncStatus">Synced ✓</div>
+        </section>
+      </main>
+
+      <footer>
+        <small>Sheet ID: <span id="sheetId"></span></small>
+      </footer>
+    </div>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
